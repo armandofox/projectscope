@@ -32,6 +32,19 @@ ActiveRecord::Schema.define(version: 20160414013209) do
 
   add_index "pull_requests", ["project_id"], name: "index_pull_requests_on_project_id"
 
+  create_table "pivotal_trackers", force: :cascade do |t|
+    t.integer  "done"
+    t.integer  "new"
+    t.integer  "old"
+    t.integer  "older"
+    t.integer  "project_id"
+    t.integer  "tracker_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "pivotal_trackers", ["project_id"], name: "index_pivotal_trackers_on_project_id"
+
   create_table "slack_data_points", force: :cascade do |t|
     t.string   "user"
     t.integer  "messages"
