@@ -1,0 +1,42 @@
+<%= form_for(@pivotal_tracker) do |f| %>
+  <% if @pivotal_tracker.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pivotal_tracker.errors.count, "error") %> prohibited this pivotal_tracker from being saved:</h2>
+
+      <ul>
+      <% @pivotal_tracker.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :done %><br>
+    <%= f.number_field :done %>
+  </div>
+  <div class="field">
+    <%= f.label :new %><br>
+    <%= f.number_field :new %>
+  </div>
+  <div class="field">
+    <%= f.label :old %><br>
+    <%= f.number_field :old %>
+  </div>
+    <div class="field">
+    <%= f.label :older %><br>
+    <%= f.number_field :older %>
+  </div>
+  </div>
+    <div class="field">
+    <%= f.label :tracker_id %><br>
+    <%= f.number_field :tracker_id %>
+  </div>
+  <div class="field">
+    <%= f.label :project_id %><br>
+    <%= f.number_field :project_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

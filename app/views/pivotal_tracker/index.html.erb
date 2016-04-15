@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Pivotal Trackers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Done</th>
+      <th>New</th>
+      <th>Old</th>
+      <th>Older</th>   
+      <th>Tracker</th>
+      <th>Project</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pivotal_trackers.each do |pivotal_tracker| %>
+      <tr>
+        <td><%= pivotal_tracker.done %></td>
+        <td><%= pivotal_tracker.new %></td>
+        <td><%= pivotal_tracker.old %></td>
+        <td><%= pivotal_tracker.older %></td>
+        <td><%= pivotal_tracker.tracker_id %></td>
+        <td><%= pivotal_tracker.project_id %></td>
+        <td><%= link_to 'Show', pivotal_tracker %></td>
+        <td><%= link_to 'Edit', edit_pivotal_tracker_path(pivotal_tracker) %></td>
+        <td><%= link_to 'Destroy', pivotal_tracker, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pivotal Tracker', new_pivotal_tracker_path %>
