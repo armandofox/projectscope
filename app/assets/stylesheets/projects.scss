@@ -24,3 +24,27 @@
   width: 150px;
   text-align: center;
 }
+
+.badge-container-gpa {
+  overflow: hidden;
+  position: relative;
+  width:28px;
+  height:20px;
+}
+
+.badge-container-cov {
+  overflow: hidden;
+  position: relative;
+  width:61px;
+  height:20px;
+}
+
+.badge-gpa {
+  position: absolute;
+  left: -82px;
+}
+
+.badge-cov {
+  position: absolute;
+  left: -63px;
+}

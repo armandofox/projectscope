@@ -17,6 +17,9 @@ class ProjectsController < ApplicationController
       if project.pivotal_tracker.done == nil
         project.pivotal_tracker.get_data
       end
+      if project.code_climate_metric
+        project.code_climate_metric.get_data
+      end
     end
   end
 
@@ -82,6 +85,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :git_repo)
+      params.require(:project).permit(:name)
     end
 end

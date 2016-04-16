@@ -59,6 +59,14 @@ project_data.each do |p|
   proj.create_pull_request(repo: p[1])
   proj.create_pivotal_tracker(tracker_id: p[2])
   proj.create_slack_metric(slack_api_token: '')
+  
+  
+  code_climate_url = "https://codeclimate.com/github/#{repo}"
+  if repo == ""
+    code_climate_url = ""
+  end
+  proj.create_code_climate_metric(url: code_climate_url)
+  
   num_slack_users = 5 + rand(2)
   rand_msg_counts = num_slack_users.times.map{ rand(200) }
   rand_msg_counts.each do |count|

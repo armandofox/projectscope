@@ -3,14 +3,16 @@
 .container-fluid
   .row
     %div{:class => ['col-sm-12', 'col-md-12', 'main']}
-      %h1.page-header Project Stats
+      %h1.page-header ProjectScope
       
       .table-responsive
       
         %table{:class => ['table', 'table-striped']}
           %thead
             %tr
-              %th
+              %th Project
+              %th GPA
+              %th Coverage
               %th Pull Requests
               %th Slack
               %th Pivotal Tracker
@@ -21,17 +23,19 @@
             - @projects.each do |project|
               %tr{:id => 'project-' + project.id.to_s}
                 %td
-                  %h4= project.name
+                  %h4
+                    = link_to project.name, 'https://github.com/' + project.pull_request.repo, :target => '_blank'
                   .projectID.hidden= project.id
-                  %span.text-muted= link_to project.pull_request.repo, 'https://github.com/'+project.pull_request.repo
-                  %div
-                    %p
-                      %a{:href => 'https://codeclimate.com/github/' + project.pull_request.repo}
-                        %img{:src => 'https://codeclimate.com/github/' + project.pull_request.repo + '/badges/gpa.svg'}
-                  %div
-                    %p
-                      %a{:href => 'https://codeclimate.com/github/' + project.pull_request.repo + '/coverage'}
-                        %img{:src => 'https://codeclimate.com/github/' + project.pull_request.repo + '/badges/coverage.svg'}
+                %td
+                  %div{:class => 'badge-container-gpa'}
+                    %div{:class => 'badge-gpa'}
+                      %a{:href => project.code_climate_metric.url, :target => '_blank'}
+                        %img{:src => project.code_climate_metric.gpa_badge_url}
+                %td
+                  %div{:class => 'badge-container-cov'}
+                    %div{:class => 'badge-cov'}
+                      %a{:href => project.code_climate_metric.coverage_url, :target => '_blank'}
+                        %img{:src => project.code_climate_metric.coverage_badge_url}
                 %td
                   %div{:id => project.id.to_s + '-pull-request-link', :class => 'hidden'}= project_pull_request_url(project, project.pull_request, format: :json)
                   %div{:id => project.id.to_s + '-pull-request', :class => 'pr-graphic'}

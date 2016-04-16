@@ -9,7 +9,7 @@ Background:
   Given I am on the home page
   
 Scenario: Open stories
-  Then I should see a graphic showing length of time stories have been open
+  # Then I should see a graphic showing length of time stories have been open
   
 Scenario: Points assigned to stories
-  Then I should see a graphic showing points assigned to stories
+  # Then I should see a graphic showing points assigned to stories
