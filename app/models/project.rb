@@ -4,4 +4,6 @@ class Project < ActiveRecord::Base
   has_one :code_climate_metric
   has_one :coverage
   has_many :slack_data_points, through: :slack_metric
+  has_one :pivotal_tracker
+
 end
