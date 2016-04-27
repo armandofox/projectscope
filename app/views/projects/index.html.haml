@@ -10,12 +10,12 @@
         %table{:class => ['table', 'table-striped']}
           %thead
             %tr
-              %th Project
-              %th GPA
-              %th Coverage
-              %th Pull Requests
-              %th Slack
-              %th Pivotal Tracker
+              %th{:class => @coverage_header}= link_to 'Name', projects_path(:sort => 'name')
+              %th{:class => @coverage_header}= link_to 'GPA', projects_path(:sort => 'gpa')
+              %th{:class => @coverage_header}= link_to 'Coverage', projects_path(:sort => 'coverage')
+              %th{:class => @coverage_header}= link_to 'Pull Requests', projects_path(:sort => 'prs')
+              %th{:class => @coverage_header}= link_to 'Slack', projects_path(:sort => 'slack')
+              %th{:class => @coverage_header}= link_to 'Pivotal Tracker', projects_path(:sort => 'pts') 
               -#
                 %th{:colspan => "3"}
         
@@ -31,6 +31,7 @@
                     %div{:class => 'badge-gpa'}
                       %a{:href => project.code_climate_metric.url, :target => '_blank'}
                         %img{:src => project.code_climate_metric.gpa_badge_url}
+    
                 %td
                   %div{:class => 'badge-container-cov'}
                     %div{:class => 'badge-cov'}

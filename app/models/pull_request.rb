@@ -1,5 +1,6 @@
 class PullRequest < ActiveRecord::Base
   belongs_to :project
+  attr_accessor :green, :yellow, :red
   validate :repo_name_is_appropriate
   
   def get_data
@@ -42,6 +43,11 @@ class PullRequest < ActiveRecord::Base
     ensure
       self.update_attributes(pr_hash)
     end
+  end
+  
+  def self.get_score
+    score = (green + (0.5 * yellow))/total_prs
+    return score
   end
   
   def repo_name_is_appropriate

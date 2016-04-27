@@ -7,6 +7,14 @@ class CodeClimateMetric < ActiveRecord::Base
     # validates :url, url: true
     validate :url_appropriate
     
+    def self.gpa_display
+        return :gpa
+    end
+    
+    def self.coverage_display
+        return :coverage
+    end
+    
     def get_data
         if self.url and self.url != ''
             gpa_hsh = get_gpa

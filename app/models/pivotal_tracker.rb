@@ -1,5 +1,6 @@
 class PivotalTracker < ActiveRecord::Base
   belongs_to :project
+  #attr_accessor :green, :yellow, :red, :blacks
   
   def get_data
     begin
@@ -15,6 +16,10 @@ class PivotalTracker < ActiveRecord::Base
     ensure
       self.update_attributes(pt_hash)
     end
+  end
+  
+  def self.get_score
+    score = (green + (0.5 * yellow) + (0.25 * red))/(green + yellow + red + black)
   end
 
 end
