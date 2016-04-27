@@ -52,6 +52,8 @@ class ProjectsController < ApplicationController
       @projects = Project.order(:coverage)
     elsif sort == 'prs' 
       @projects = Project.order(:prs)
+    elsif sort == 'pts' 
+      @projects = Project.order(:pts)
     elsif sort == 'name'
       @projects = Project.order(:name)
     end

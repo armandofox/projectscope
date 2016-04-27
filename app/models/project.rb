@@ -12,10 +12,11 @@ class Project < ActiveRecord::Base
     gpa = ccm.gpa
     #self.gpa!
     coverage = ccm.coverage
-    #self.prs = PullRequest.where(:project_id == self.id).get_score
-    
-    #pts = self.pivotal_tracker.get_score
-    self.update_attributes(:gpa => gpa, :coverage => coverage, :pts => pts)
+    #self.prs = self.pull_request
+    prs = (self.pull_request.green + (0.5 * self.pull_request.yellow))/self.pull_request.total
+    pt = self.pivotal_tracker
+    pts = pt.done + ((0.5 * pt.new) + (0.25 * pt.old))/(pt.done + pt.new + pt.old + pt.older)
+    self.update_attributes(:gpa => gpa, :coverage => coverage, :prs => prs, :pts => pts)
 
   end
   
