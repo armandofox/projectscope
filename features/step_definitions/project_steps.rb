@@ -47,14 +47,21 @@ Given(/^the following projects exist:$/) do |table|
 end
 
 Then(/^the projects should be sorted by pull requests$/) do
-  sorted_projects = PullRequest.order(:red, :yellow, :green).map { |pr| pr.project }
+  sorted_projects = Project.all.order(:prs).map { |pr| pr.project }
   sorted_projects.each_cons(2) do |chunk|
     expect(page.body.index(chunk[0].name)).to be < page.body.index(chunk[1].name)
   end
 end
 
 Then(/^the projects should be sorted by Code Climate GPA$/) do
-  sorted_projects = CodeClimateMetric.order(:gpa).map { |pr| pr.project }
+  sorted_projects = CodeClimateMetric.order("gpa ASC").map { |pr| pr.project }
+  sorted_projects.each_cons(2) do |chunk|
+    expect(page.body.index(chunk[0].name)).to be < page.body.index(chunk[1].name)
+  end
+end
+
+Then(/^the projects should be sorted by Code Climate GPA in reverse order$/) do
+  sorted_projects = CodeClimateMetric.order("gpa DESC").map { |pr| pr.project }
   sorted_projects.each_cons(2) do |chunk|
     expect(page.body.index(chunk[0].name)).to be < page.body.index(chunk[1].name)
   end

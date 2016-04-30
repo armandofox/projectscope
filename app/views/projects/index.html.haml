@@ -10,7 +10,7 @@
         %table{:class => ['table', 'table-striped']}
           %thead
             %tr
-              %th{:class => @coverage_header}= link_to 'Name', projects_path(:sort => 'name')
+              %th
               %th{:class => @coverage_header}= link_to 'GPA', projects_path(:sort => 'gpa')
               %th{:class => @coverage_header}= link_to 'Coverage', projects_path(:sort => 'coverage')
               %th{:class => @coverage_header}= link_to 'Pull Requests', projects_path(:sort => 'prs')

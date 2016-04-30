@@ -4,22 +4,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    sort = params[:sort]
-    #@preprojects = Project.all
-    #if sort == 'gpa'
-    #  @projects = Project.CodeClimateMetric.order(:gpa)
-    #elsif sort == 'coverage' 
-    #  @projects = Project.order(:coverage)
-    #elsif sort == 'prs'
-    #  @projects = Project.order(:gpa)
-    #elsif sort == 'slack'
-    #  @projects = Project.SlackMetric.order()
-    #elsif sort == 'ptr'
-    #  @projects = Project.PivotalTracker.order()
-    #else
-    #  @projects = Project.all
-    #end
-     
+    sort = params[:sort] || session[:sort]
     @projects = Project.all
     
     @projects.each do |project|
@@ -40,14 +25,9 @@ class ProjectsController < ApplicationController
         project.pivotal_tracker.get_data
       end
       project.get_scores
-      
-      #print project.gpa
-      #print ' <----------> '
-      #print project.code_climate_metric.gpa
     end
-    #@projects = Project.all.order(:gpa)
     if sort == 'gpa'
-      @projects = Project.order(:gpa)
+      @project = Project.order(:gpa)
     elsif sort == 'coverage' 
       @projects = Project.order(:coverage)
     elsif sort == 'prs' 
@@ -56,6 +36,9 @@ class ProjectsController < ApplicationController
       @projects = Project.order(:pts)
     elsif sort == 'name'
       @projects = Project.order(:name)
+    end
+    if params[:sort] != session[:sort]
+      session[:sort] = sort
     end
   end
 

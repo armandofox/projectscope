@@ -15,3 +15,5 @@ Scenario: sort by Code Climate GPA
   When I am on the home page
   And I follow "GPA"
   Then the projects should be sorted by Code Climate GPA
+  When I follow "GPA"
+  Then the projects should be sorted by Code Climate GPA in reverse order
