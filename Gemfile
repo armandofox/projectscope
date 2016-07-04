@@ -66,6 +66,8 @@ group :development, :test do
   
   # If you plan to use JavaScript/CoffeeScript
   # gem 'jasmine-rails'
+
+  gem 'dotenv-rails'
 end
 
 group :development do

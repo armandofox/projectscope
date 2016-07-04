@@ -31,13 +31,13 @@
                 %td
                   %div{:class => 'badge-container-gpa'}
                     %div{:class => 'badge-gpa'}
-                      %a{:href => project.code_climate_metric.url, :target => '_blank'}
-                        %img{:src => project.code_climate_metric.gpa_badge_url}
+                      %a{:href => project.code_climate_metric.try(:url), :target => '_blank'}
+                        %img{:src => project.code_climate_metric.try(:gpa_badge_url)}
                 %td
                   %div{:class => 'badge-container-cov'}
                     %div{:class => 'badge-cov'}
-                      %a{:href => project.code_climate_metric.coverage_url, :target => '_blank'}
-                        %img{:src => project.code_climate_metric.coverage_badge_url}
+                      %a{:href => project.code_climate_metric.try(:coverage_url), :target => '_blank'}
+                        %img{:src => project.code_climate_metric.try(:coverage_badge_url)}
                 %td
                   %div{:id => %Q{#{project.id}-pull-request-link}, :class => 'hidden'}
                     = project_pull_request_url(project, project.pull_request, format: :json)
